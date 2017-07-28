@@ -1,0 +1,84 @@
+A condensed outline of the various guided workshop projects.
+
+1: Pong
+  Description:
+    A simple Pong game designed to introduce students to the course. Two-player only, with no AI inclusion.
+    One single script controls all moving parts of the game board. This is poor code design, but will be rectified in the Pong II project.
+  Concepts:
+    Introduction to Godot
+    Simple scripting
+    Nodes
+  Bonus exercises:
+    None
+
+2: Pong II
+  Description:
+    A slightly more advanced Pong game than in project 1.
+    Game now includes a simple menu providing options for a single-player game with the AI controlled by the computer. The ball now makes a simple electronic noise when bouncing off something, and will reflect off the paddles at a differing angle based on where on the paddle it hit. Score is now tallied, and there is an option for the game to end when one player either reaches 5, 10, 20, or never.
+  Concepts:
+    Simple menu design
+    Code decoupling
+    SFX
+    Exporting projects
+  Bonus exercises:
+    Create a way for the player to select any number between 1 and 100 points for a completion target. (It will be unlikely that the results are completely error-free, e.g. text entry field not checking if in range; this will be used for further discussion)
+
+3: Space Shooter
+  Description:
+    A simple Space Invaders-esque arcade game. Player controls a ship on the bottom of the screen, and is allotted 3 lives. Aliens at the top of the screen will charge downward to hit the player (Type A) and cycle back to the top of the screen, or shoot at the player to try and hit them (Type B). Score is tallied, and highest score is saved between plays.
+    This project provides the introduction of Scenes, and instantiating them through both the editor and through code.
+  Concepts:
+    Separated scenes
+    Instantiation through the Editor
+    Instantiation through Code
+    Exported variables
+  Bonus exercises:
+    Grant the player an extra life for every 100,000 points they earn, up to a limit of 5 extra lives.
+    Make the aliens shoot faster bullets with each wave defeated.
+
+4: RPG
+  Description:
+    A simple grid-based RPG-style game, where a knight goes to a cave to defeat a monster within. This project informally introduces the Kinematic Body and Tileset, but does not expand on physics beyond simple collision detection (more involved phsyics are used in the Platformer project).
+    Maps are pre-designed and provided for download, and consist of the Town, the Field, the Forest, and the Cave; project construction pertains to the scripting.
+    Character levels up to a cap of 25, and possesses ATK, DEF, and SPD stats. SPD stat is used to fill the turn gauge for an enemy or for the player; When full, entity can attack.
+    Project introduces level loading, and requires students to code a system for switching between overworld and battle screens without loss of data. Project also introduces animations.
+    
+    Enemies for the maps are as follows:
+      Field:
+        Angry Bird
+        Field Mouse
+        Green Blob
+        Shrub Monster [BOSS]
+      Forest:
+        Giant Spider
+        Green Snake
+        Angry Tree
+        Golem [BOSS]
+      Cave:
+        Blue Blob
+        Black Snake
+        Vampire Bat
+        The Monster [BOSS]
+  Concepts:
+    Kinematic Bodies
+    Tilesets
+    Loading Scenes
+    Dictionaries
+    Managing Text
+      JSON
+      Loading Files
+
+5: Platformer
+  Description:
+    A simple platformer game that provides a deeper look at the physics system and advanced scripting. Tilemaps are used to construct levels; player character is capable of variable-height jumps, and double jumps.
+  Concepts:
+    Kinematic Bodies/Collisions
+    intermediate scripting
+
+6: Tetris
+  Description:
+    A capstone project which introduces custom drawn nodes and utilization of custom classes and structures. This course also introduces the open-source Piskel art application, which is used to create the simple graphics in the tetris game.
+  Concepts:
+    Piskel application/Pixel art
+    Custom _draw() functions
+    Advanced scripting, programming structures (dictionaries, custom structs, etc)
