@@ -1,5 +1,18 @@
 A condensed outline of the various guided workshop projects.
 
+Demo: Go fish
+  Description:
+    A simple interactive demo which introduces base concepts of scripting in the form of a simple card game. The following ideas are introduced:
+      Variables: as card values, cards in deck/hand
+      Lists: as a 'deck' or a 'hand'
+      Loops: as dealing
+      Functions: as flipping cards, comparing cards, shuffling deck
+  Concepts:
+    Basic scripting concepts
+      Variables
+      List structure
+      Functions
+
 1: Pong
   Description:
     A simple Pong game designed to introduce students to the course. Two-player only, with no AI inclusion.
