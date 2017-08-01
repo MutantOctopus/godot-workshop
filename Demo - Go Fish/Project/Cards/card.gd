@@ -48,6 +48,11 @@ func _ready():
 	if card_back == null:
 		card_back = load(DEFAULT_BACK_PATH)
 	set_texture(card_back)
+	# Finally, shuffle the randomizer.
+	# This is important - otherwise, the same random number
+	# (and therefore, the same 'flip' and 'slide' sfx)
+	# would get chosen every time.
+	randomize()
 
 # =================================================================== #
 # CLASS FUNCTIONS                                                     #
@@ -82,7 +87,11 @@ func flip(to = null):
 # Changes the current sprite displayed, and plays a 'flip' sfx.
 func _flip_card():
 	set_texture(card_face if flipped else card_back)
-	# SFX play here
+	#   randi           => 1 to 2,147,483,647 (max int);
+	#  (randi % 3)      => 0, 1, 2 via modulus;
+	# ((randi % 3) + 1) => 1, 2, 3
+	var sfx_string = "place-%s" % ((randi() % 3) + 1)
+	get_node("sfx").play(sfx_string)
 
 # =================================================================== #
 # SETTER FUNCTIONS                                                    #

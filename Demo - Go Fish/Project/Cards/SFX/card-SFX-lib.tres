@@ -1,0 +1,48 @@
+[gd_resource type="SampleLibrary" load_steps=7 format=1]
+
+[ext_resource path="res://Cards/SFX/cardPlace1.smp" type="Sample" id=1]
+[ext_resource path="res://Cards/SFX/cardPlace2.smp" type="Sample" id=2]
+[ext_resource path="res://Cards/SFX/cardPlace3.smp" type="Sample" id=3]
+[ext_resource path="res://Cards/SFX/cardSlide1.smp" type="Sample" id=4]
+[ext_resource path="res://Cards/SFX/cardSlide2.smp" type="Sample" id=5]
+[ext_resource path="res://Cards/SFX/cardSlide3.smp" type="Sample" id=6]
+
+[resource]
+
+samples/place-1 = {
+"db": 4.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 1 )
+}
+samples/place-2 = {
+"db": 4.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 2 )
+}
+samples/place-3 = {
+"db": 4.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 3 )
+}
+samples/slide-1 = {
+"db": 4.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 4 )
+}
+samples/slide-2 = {
+"db": 4.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 5 )
+}
+samples/slide-3 = {
+"db": 4.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 6 )
+}
+
