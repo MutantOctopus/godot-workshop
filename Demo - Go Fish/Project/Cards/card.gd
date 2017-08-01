@@ -11,9 +11,9 @@ export(Texture) var card_back
 # =================================================================== #
 # 'flipped' variable represents whether the card is currently
 # face-up (true) or face-down (false)
-# setter function: _set_flipped
+# setter function: flip(to)
 # getter function: n/a
-var flipped = false setget _set_flipped
+var flipped = false setget flip
 # The current suit of the card. If not set to a valid suit, defaults
 # to joker.
 var suit = "joker"
@@ -47,9 +47,7 @@ const RANK_NAMES = ["joker", "ace", "two", "three", "four",
 func _ready():
 	if card_back == null:
 		card_back = load(DEFAULT_BACK_PATH)
-	#update_sprite()
-	update_card_face()
-	_set_flipped(true)
+	set_texture(card_back)
 
 # =================================================================== #
 # CLASS FUNCTIONS                                                     #
@@ -65,28 +63,30 @@ func update_card_face():
 		var path = "res://Cards/Faces/%s/%s.png" % [suit.capitalize(), filename]
 		card_face = load(path)
 
-# Updates the sprite to either the card back or the card face,
-# based on the 'flipped' variable
-func update_sprite():
+# Flips the card. If 'to' is specified as a boolean, it will set the current
+# flipped state to the argument; 'true' is up, 'false' is down. If 'to' is
+# neither 'null' or a boolean, nothing will occur (excepting a debug
+# message)
+func flip(to = null):
+	if to == null:
+		flipped = !flipped
+		_flip_card()
+	elif typeof(to) == TYPE_BOOL:
+		if to != flipped:
+			flipped = to
+			_flip_card()
+		# Else, there's no need to do anything
+	else: # argument is not valid, print error, do nothing
+		printerr("Invalid argument '%s' passed to 'flip' method" % to)
+
+# Changes the current sprite displayed, and plays a 'flip' sfx.
+func _flip_card():
 	set_texture(card_face if flipped else card_back)
+	# SFX play here
 
 # =================================================================== #
 # SETTER FUNCTIONS                                                    #
 # =================================================================== #
-# Setter function for the 'flipped' variable
-func _set_flipped(value):
-	if typeof(value) != TYPE_BOOL:
-		printerr(
-			"Attempt to set value of %s 'flipped' to non-boolean value %s"
-			% [get_name(), value]
-		)
-		return
-	elif value == (!flipped):
-		# We only need to do anything if the new
-		# value is different than the older value
-		flipped = value
-		update_sprite()
-
 # Setter function for the 'suit' variable.
 # Accepts "joker", "clubs", "hearts", "diamonds", or "spades" in
 # any capitalization
