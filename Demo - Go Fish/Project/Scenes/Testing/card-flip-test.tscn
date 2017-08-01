@@ -80,4 +80,8 @@ card_back = ExtResource( 2 )
 
 [connection signal="pressed" from="Control/flip" to="card" method="flip"]
 
+[connection signal="pressed" from="Control/faceup" to="card" method="flip" binds= [ true ]]
+
+[connection signal="pressed" from="Control/facedown" to="card" method="flip" binds= [ false ]]
+
 
