@@ -16,11 +16,11 @@ export(Texture) var card_back
 var flipped = false setget flip
 # The current suit of the card. If not set to a valid suit, defaults
 # to joker.
-var suit = "joker"
+var suit = "joker" setget _set_suit
 # The current rank (ace, two, three... jack, queen, king) of the
 # card. If the value is invalid, the card will be displayed as a
-# joker. Valid values are 1-13.
-var rank = 1
+# joker. Valid values are 1-13, or 0 for joker.
+var rank = 0 setget _set_rank
 # The current card face. Cannot be set outside of this script.
 var card_face setget _no_set
 
@@ -45,8 +45,12 @@ const RANK_NAMES = ["joker", "ace", "two", "three", "four",
 # ENGINE FUNCTIONS                                                    #
 # =================================================================== #
 func _ready():
+	# First things first, determine what face to use for the card
+	update_card_face()
+	# Then, if card_back is null, give it a default
 	if card_back == null:
 		card_back = load(DEFAULT_BACK_PATH)
+	# Finally, set the card back texture
 	set_texture(card_back)
 	# Finally, shuffle the randomizer.
 	# This is important - otherwise, the same random number
@@ -59,7 +63,7 @@ func _ready():
 # =================================================================== #
 # Updates the card's face texture.
 func update_card_face():
-	if suit == "joker":
+	if suit == "joker" or rank == 0:
 		card_face = load("res://Cards/Faces/joker.png")
 	else:
 		var filename = rank
@@ -106,6 +110,17 @@ func _set_suit(value):
 		printerr("Attempted to set suit as invalid value '%s'" % value)
 		new_suit = "joker"
 	suit = new_suit
+	update_card_face()
+
+# Setter function for the 'rank' variable.
+# Accepts any number between 0 (joker) and 13 (king).
+# Will set value to 0 if outside range.
+func _set_rank(value):
+	if value > 13 or value < 0:
+		print("Attempted rank set to value outside range: %d" % value)
+		value = 0
+	rank = value
+	update_card_face()
 
 # A function which does not set the requested value,
 # used when a variable cannot be set outside the
