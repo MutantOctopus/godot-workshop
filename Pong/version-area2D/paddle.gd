@@ -3,6 +3,8 @@ extends Area2D
 # +------------------------------------------------+
 # | EXPORTED VARIABLES                             |
 # +------------------------------------------------+
+# The path to the ball
+export(NodePath) var ball
 # The speed at which the paddle can move
 export(int, 0, 1000) var speed = 150
 # The Input Action which moves the paddle up.
@@ -23,6 +25,8 @@ export(int, 0, 400) var com_accuracy = 5
 # Only half, because everything is measured from
 # the center of the paddle.
 var half_paddle_height
+# Height of the screen
+var screen_height
 
 # +------------------------------------------------+
 # | ENGINE FUNCTIONS                               |
@@ -33,6 +37,8 @@ func _ready():
 	half_paddle_height = get_node("hitbox") \
 		.get_shape() \
 		.get_height() * 0.5
+	# Vector2.height == Vector2.y
+	screen_height = get_viewport_rect().size.height
 	set_process(true)
 
 func _process(delta):

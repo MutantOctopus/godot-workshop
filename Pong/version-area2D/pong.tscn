@@ -35,6 +35,7 @@ __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
+ball = NodePath("../ball")
 speed = 150
 move_up_action = "move_left_up"
 move_down_action = "move_left_down"
@@ -69,6 +70,7 @@ __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
+ball = NodePath("../ball")
 speed = 150
 move_up_action = "move_right_up"
 move_down_action = "move_right_down"
