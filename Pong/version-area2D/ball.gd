@@ -28,6 +28,9 @@ func _ready():
 	randomize()
 	set_process(true)
 
+func _process(delta):
+	set_pos(get_pos() + (direction * speed * delta))
+
 # +------------------------------------------------+
 # | MEMBER FUNCTIONS                               |
 # +------------------------------------------------+
@@ -41,6 +44,7 @@ func reset_ball():
 # Called when the ball bounces off a paddle
 func hit_paddle():
 	speed *= 1.1 # Increase speed
+	print(speed)
 	direction.x = -sign(direction.x)
 	direction.y = randf() * 2 - 1
 	direction = direction.normalized()
@@ -52,3 +56,5 @@ func hit_paddle():
 func _on_area_enter(area):
 	var groups = area.get_groups() # Array of strings
 	if groups.has("paddle"): hit_paddle()
+	elif groups.has("border"): direction.y = -direction.y
+	elif groups.has("goal"): reset_ball()
