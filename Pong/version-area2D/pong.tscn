@@ -1,0 +1,87 @@
+[gd_scene load_steps=7 format=1]
+
+[ext_resource path="res://version-area2D/paddle-hitbox.tres" type="Shape2D" id=1]
+[ext_resource path="res://Sprites/left_pallete.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/right_pallete.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/ball.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/separator.png" type="Texture" id=5]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 4.0
+
+[node name="pong" type="Node2D"]
+
+[node name="left" type="Area2D" parent="."]
+
+transform/pos = Vector2( 67, 200 )
+input/pickable = true
+shapes/0/shape = ExtResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="sprite" type="Sprite" parent="left"]
+
+texture = ExtResource( 2 )
+
+[node name="hitbox" type="CollisionShape2D" parent="left"]
+
+shape = ExtResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="right" type="Area2D" parent="."]
+
+transform/pos = Vector2( 573, 200 )
+input/pickable = true
+shapes/0/shape = ExtResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="sprite" type="Sprite" parent="right"]
+
+texture = ExtResource( 3 )
+
+[node name="hitbox" type="CollisionShape2D" parent="right"]
+
+shape = ExtResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="ball" type="Area2D" parent="."]
+
+transform/pos = Vector2( 320, 200 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="sprite" type="Sprite" parent="ball"]
+
+texture = ExtResource( 4 )
+
+[node name="hitbox" type="CollisionShape2D" parent="ball"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="separator" type="Sprite" parent="."]
+
+transform/pos = Vector2( 320, 200 )
+texture = ExtResource( 5 )
+
+
