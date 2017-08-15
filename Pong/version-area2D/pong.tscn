@@ -103,8 +103,8 @@ ball = NodePath("../ball")
 speed = 150
 move_up_action = "right_move_up"
 move_down_action = "right_move_down"
-com_player = false
-com_accuracy = 5
+com_player = true
+com_accuracy = 10
 
 [node name="sprite" type="Sprite" parent="right"]
 
