@@ -36,7 +36,10 @@ __meta__ = {
 "_edit_lock_": true
 }
 speed = 150
+move_up_action = "move_left_up"
+move_down_action = "move_left_down"
 com_player = false
+com_accuracy = 5
 
 [node name="sprite" type="Sprite" parent="left"]
 
@@ -67,7 +70,10 @@ __meta__ = {
 "_edit_lock_": true
 }
 speed = 150
+move_up_action = "move_right_up"
+move_down_action = "move_right_down"
 com_player = false
+com_accuracy = 5
 
 [node name="sprite" type="Sprite" parent="right"]
 
