@@ -37,8 +37,8 @@ __meta__ = {
 }
 ball = NodePath("../ball")
 speed = 150
-move_up_action = "move_left_up"
-move_down_action = "move_left_down"
+move_up_action = "left_move_up"
+move_down_action = "left_move_down"
 com_player = false
 com_accuracy = 5
 
@@ -72,8 +72,8 @@ __meta__ = {
 }
 ball = NodePath("../ball")
 speed = 150
-move_up_action = "move_right_up"
-move_down_action = "move_right_down"
+move_up_action = "right_move_up"
+move_down_action = "right_move_down"
 com_player = false
 com_accuracy = 5
 
