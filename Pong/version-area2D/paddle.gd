@@ -53,8 +53,8 @@ func _process(delta):
 		# If we're computer controlled, is the ball beyond our accurcacy margin?
 		or (com_player and get_node(ball).get_pos().y < (pos_y - com_accuracy))
 	)):
-		print("Up!")
-		movement += Vector2(-1, 0)
+		#print("Up!")
+		movement += Vector2(0, -1)
 	# Downward movement
 	if ((pos_y < screen_height - half_paddle_height) # Can we move down?
 	and (
@@ -63,5 +63,8 @@ func _process(delta):
 		# If we're computer controlled, is the ball beyond our accuracy margin?
 		or (com_player and get_node(ball).get_pos().y > (pos_y + com_accuracy))
 	)):
-		print("Down!")
-		movement += Vector2(1, 0)
+		#print("Down!")
+		movement += Vector2(0, 1)
+	
+	movement *= speed * delta
+	set_pos(get_pos() + movement)
