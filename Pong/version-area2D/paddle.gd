@@ -32,11 +32,16 @@ var screen_height
 # | ENGINE FUNCTIONS                               |
 # +------------------------------------------------+
 func _ready():
-	# This will act weird if the "hitbox" child
-	# node's Shape2D isn't a CapsuleShape2D
-	half_paddle_height = get_node("hitbox") \
-		.get_shape() \
-		.get_height() * 0.5
+	# 'hitbox' node is expected to have a capsule shape
+	var paddle_capsule = get_node("hitbox").get_shape()
+	# Capsule is two halves of a circle with a rectangle in
+	# the middle. 'get_height()' is the height of the
+	# RECTANGLE, and the full size is the height plus
+	# the diameter of the circle (half is 1/2 get_height +
+	# radius)
+	half_paddle_height =\
+		paddle_capsule.get_height() * 0.5\
+		+ paddle_capsule.get_radius()
 	# Vector2.height == Vector2.y
 	screen_height = get_viewport_rect().size.height
 	set_process(true)
