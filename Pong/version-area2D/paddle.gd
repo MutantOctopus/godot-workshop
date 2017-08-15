@@ -43,7 +43,25 @@ func _ready():
 
 func _process(delta):
 	var movement = Vector2()
-	if not com_player: # Human player
-		pass
-	else: # Computer player
-		pass
+	# Just shortening so we don't need to call the full name
+	var pos_y = get_pos().y
+	# Upward movement
+	if ((pos_y > half_paddle_height) # Can we move up?
+	and (
+		# If we're human controlled, is the "move up" action pressed?
+		(not com_player and Input.is_action_pressed(move_up_action))
+		# If we're computer controlled, is the ball beyond our accurcacy margin?
+		or (com_player and get_node(ball).get_pos().y < (pos_y - com_accuracy))
+	)):
+		print("Up!")
+		movement += Vector2(-1, 0)
+	# Downward movement
+	if ((pos_y < screen_height - half_paddle_height) # Can we move down?
+	and (
+		# If we're human controlled, is the "move down" action pressed?
+		(not com_player and Input.is_action_pressed(move_down_action))
+		# If we're computer controlled, is the ball beyond our accuracy margin?
+		or (com_player and get_node(ball).get_pos().y > (pos_y + com_accuracy))
+	)):
+		print("Down!")
+		movement += Vector2(1, 0)
