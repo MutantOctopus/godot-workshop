@@ -15,6 +15,7 @@ radius = 4.0
 
 [node name="left" type="Area2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 67, 200 )
 input/pickable = true
 shapes/0/shape = ExtResource( 1 )
@@ -24,6 +25,9 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="sprite" type="Sprite" parent="left"]
 
@@ -31,12 +35,14 @@ texture = ExtResource( 2 )
 
 [node name="hitbox" type="CollisionShape2D" parent="left"]
 
+visibility/visible = false
 shape = ExtResource( 1 )
 trigger = false
 _update_shape_index = 0
 
 [node name="right" type="Area2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 573, 200 )
 input/pickable = true
 shapes/0/shape = ExtResource( 1 )
@@ -46,6 +52,9 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="sprite" type="Sprite" parent="right"]
 
@@ -53,12 +62,14 @@ texture = ExtResource( 3 )
 
 [node name="hitbox" type="CollisionShape2D" parent="right"]
 
+visibility/visible = false
 shape = ExtResource( 1 )
 trigger = false
 _update_shape_index = 0
 
 [node name="ball" type="Area2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 320, 200 )
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
@@ -68,6 +79,9 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="sprite" type="Sprite" parent="ball"]
 
@@ -75,6 +89,7 @@ texture = ExtResource( 4 )
 
 [node name="hitbox" type="CollisionShape2D" parent="ball"]
 
+visibility/visible = false
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
