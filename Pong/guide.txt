@@ -1,0 +1,40 @@
+Create project folder, etc
+Open Godot; take a moment to explain some things
+  The top left: Menus, including the Scene Menu
+  Top center-left: 2D, 3D, Script, AssetLib buttons so we can change the focus of the center window
+  Top center: 
+download pong assets, unzip
+
+
+
+Set resolution:
+  scene menu > project settings > display > width: 640, height: 400
+  set "resizable" off
+  while in menu, set clear color: render > default_clear_color to black
+    explain the features of the color picker at this point
+
+return to scene view
+
+add nodes:
+  open "add node" menu, take moment to explain the difference between node types:
+    gray: utility
+    blue: 2D
+    red: 3D
+    green: control
+    yellow: animation
+  also touch on concept of 'inheritance': any time a node is listed under a different type of node, it 'inherits' from the parent and becomes a "more specific version" of that node
+  Add basic Node2D, explain that it is something which has a Transform (Position, Rotation, and Scale) in the 2D game world.
+  Rename the Node2D to "game"
+  Add child Sprite nodes
+    explain Sprite is a Node2D which has an image attached
+    left: place at (70, 200), attach image by the 'load' feature
+    note that we can use simple math in the input fields, and use it when placing the right paddle
+    right: place at (640-70, 200), attach image with the 'drag and drop' feature
+    separator: place at (640/2, 400/2), students can choose how to attach
+    ball: same as separator
+
+save scene as pong.tscn: explain diff between scene (.scn) files, and text scene (.tscn) files.
+
+Input actions: Take a moment to explain them.
+  input actions allow us to look for multiple different types of input (keyboard, mouse, touch, joystick, controller, etc) at once for any given thing we want to do, which is very useful to allow us to reduce code size
+  go to scene menu/project settings/input map tab
