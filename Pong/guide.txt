@@ -38,3 +38,175 @@ save scene as pong.tscn: explain diff between scene (.scn) files, and text scene
 Input actions: Take a moment to explain them.
   input actions allow us to look for multiple different types of input (keyboard, mouse, touch, joystick, controller, etc) at once for any given thing we want to do, which is very useful to allow us to reduce code size
   go to scene menu/project settings/input map tab
+
+SCRIPTING
+make sure to note that the stuff going on in this tutorial isn't "idomatic" Godot programming, and most games wouldn't follow this pattern
+
+Explain that attaching a script to a node allows us to make a 'more specific' version of that node, in the same way inheritance allows a Sprite to be a more specific Node2D
+Start by attaching a script to 'game' node
+explain dialog:
+  Class Name: A 'class' is a certain type of object, like a Node2D or a Sprite. In other languages, the 'class' would be given a particular name; in Godot, the name of the gdscript file is the class name.
+  Inherits: This explains what the script is a 'more specific form' of.
+  Language: Currently unused, but 3.0 is planning to introduce other language options
+  Path: The location of the file. Click on the double-dots and name the file 'pong.gd'
+  Built-in: If this option is toggled, the script won't be saved as a separate file, but will instead be saved as part of the scene. For now, leave it 'OFF'
+Click create script, scene view should change to script (note that top-left has changed from "2D" to "Script")
+
+Point out the following:
+  the top left of the scene window now has several context menus. Notice that in the 'file' menu, Alt+Ctrl+S is listed as the keybinding to save a script.
+  In the top right of the scene window are:
+    "Tutorials" (takes you to the godot documentation, which includes several tutorials)
+    "classes" which can be used to search up various node types and more, and look at their documentation (demonstrate by searching for Vector2)
+    "search help" which is similar, but lets you search up methods and variables as well (demonstrate with 'sprite texture' which leads us to get_texture)
+  On the left sidebar are our various scripting pages open; switch back to code
+  
+Explain what you're looking at on the code page:
+  "extends Node2D": This gdscript file is designed to *extend* the functionality of a Node2D, and may be used on Node2Ds as well as *any node which extends Node2D*, such as Sprite
+  comments: any text following a pound symbol (#) will be ignored. This can and should be used to explain what your code is doing when it isn't *immediately* obvious, because it's very easy to forget what complex code *does*, which can make it difficult to edit later
+  "func _ready():": this line defines a FUNCtion, which is a particular 'thing' which we can ask this script to do. '_ready' is a special function, which is called when the game starts up (this is a generalization, but it'll be described better later)
+  "    pass": gdscript is an 'indented' language, which means that a 'block' of code, such as a function, is defined by how you indent it. When we un-indent, the block ends. 'pass' is a keyword which says, 'there should be something here, but I'm not putting anything here yet'. The code won't work if we don't have *something* indented, which is why we use 'pass'.
+
+Create 'member variables' - a variable is a name we use to refer to a 'thing'. A 'member variable' is something which belongs to the object in question, and can be used from anywhere within that object, as well as looked at by other objects. Member variables are usually placed between the 'extends' line and the first function.
+Create and comment these variables:
+
+    # Member variables
+    var screen_size
+    var pad_size
+    var direction = Vector2(-1, 0) # the direction the ball is moving
+    
+"screen_size" and "pad_size" are things we don't know until the game starts, so we leave them blank. 'direction', however, has a starting value: (-1,0). It is a Vector2, which is a 2D 'arrow' that points 1 unit to the left, and 0 units up or down.
+
+Edit the _ready function as follows:
+
+    func _ready():
+        screen_size = get_viewport_rect().size
+        pad_size = get_node("left").get_texture().get_size()
+        set_process(true)
+
+In order:
+  When we start the game, look for the size of the screen. First, we call the function "get_viewport_rect", which gives us a 'Rect2': a data type which stores a rectangle as a corner, a width, and a height. It calculates this from the 'viewport', which, in this instance, is the entirety of our screen. Once we have the viewport rect, we can discard the position of the rectangle (which is 0,0) and simply take the size property. screen_size is a vector2 that has its 'width' as x, and 'height' as y.
+  pad_size is calculated similarly. At game start, we look for the node "left" among the current node's children (get_node), get its texture (the image we set to it) and find the size (width, height) of that texture, in the form of a vector2.
+  set_process is a function which activates or deactivates the '_process' function, which is called every frame. This allows us to do something every time the game checks to see if something new has happened. If we didn't activate _process, the node would not get 'checked in on' by the game, and would 'sleep'.
+  Introduce 'boolean': a true or false falue. In this case, we're using a raw boolean, true. Booleans are usually returned from functions we call, or are generated by comparing objects (less than, greater than, etc)
+
+Add the following constants:
+
+    # Constant for ball speed (in pixels/second)
+    const INITIAL_BALL_SPEED = 80
+    # Speed of the ball (also in pixels/second)
+    var ball_speed = INITIAL_BALL_SPEED
+    # Constant for pads speed
+    const PAD_SPEED = 150
+
+A 'const' is a special type of variable which can't be changed in-game, and if we want a new value for it, we have to change the number in our code file. we represent a constant with full-uppercase letters. Generally speaking, this isn't the kind of thing we'd use a constant for, but it's good to introduce it.
+ball_speed is a var and not a const so that we can change its speed as the game goes on. However, it's good to have INITIAL_BALL_SPEED so that we can grab that value again whenever we restart the game.
+
+THE _PROCESS FUNCTION
+
+Add the following:
+
+    func _process(delta):
+    
+Explain that 'delta' is a special kind of variable, a *function argument*; in this case, 'delta' represents the time passed since the last _process call; this is important so we can do measurements based on how much time has passed, leading to a consistent game. When the engine asks us to "process", it gives us the delta value on its own.
+Note that 'delta' doesn't need to be called 'delta'. We could call it 'time', 'd', or whatever else, so long as you always use that name. However, delta is standard, and should be used.
+
+        var ball_pos = get_node("ball").get_pos()
+        var left_rect = Rect2( get_node("left").get_pos() - pad_size*0.5, pad_size )
+        var right_rect = Rect2( get_node("right").get_pos() - pad_size*0.5, pad_size )
+        
+Explain these variables: ball_pos is the current position of the ball, left_rect and right_rect are Rect2s we create from the position and size of the paddles. Since the paddles' position is in the center of their rectangle, we need to halve pad_size in order to get the position of the top-left corner. Point out that vector2s can be multiplier by a number, called a 'scalar'; a * (x, y) is the same as (a * x, a * y).
+
+        # update ball_pos
+        ball_pos += direction * ball_speed * delta
+
++=: This compound symbol is the add-assignment operator: a += b is equal to a = a + b.
+Here we figure out where the ball is *going to be*, given its current direction, speed, and the amount of time that has passed. We are again multiplying a vector by a scalar, this time the vector 'direction' by 'ball_speed (pixels/second) * delta (seconds)', ultimately meaning the vector becomes 'how many pixels do I move'.
+Since this code is called every time _process is called, this means we're updating the ball's position every frame
+
+Next up, we introduce an 'if' statement: Simply put, an 'if' will only execute code in its indented block if the condition provided is true.
+
+        # Flip when touching roof or floor
+        if (
+            (ball_pos.y < 0 and direction.y < 0)
+            or (ball_pos.y > screen_size.y and direction.y > 0)
+        ):
+            direction.y = -direction.y
+
+When using parentheses, we can split up an if statement over multiple lines. It's good form to use indentations so that we can tell what pairs with what.
+Notice that gdscript uses 'and' and 'or' for comparing booleans. Other languages often use specified symbols.
+Much like a function declaration, an if statement's condition is considered over when we reach the colon; the next line must be indented.
+In this case, we are saying:
+  If the ball's new position is less than zero (above the ceiling) AND it's still travelling upward,
+  OR if the ball's new position is greater than the screen's height (below the floor) AND it's still travelling downward,
+  make it move in the opposite vertical direction.
+  
+The next if statement is more elaborate:
+
+        # Flip, change direction and increase speed when touching pads
+        if (
+            (left_rect.has_point(ball_pos) and direction.x < 0)
+            or (right_rect.has_point(ball_pos) and direction.x > 0)
+        ):
+            direction.x = -direction.x
+            direction.y = randf()*2.0 - 1
+            direction = direction.normalized()
+            ball_speed *= 1.1
+
+This if statement reads as follows:
+  If the ball is inside our left paddle AND the ball is moving left,
+  OR the ball is inside our right paddle AND the ball is still moving right:
+    Switch horizontal directions
+    Make its vertical direction random
+    normalize the vector*
+    Increase the ball's speed by 10% (*= is similar to +=)
+* Normalizing a vector means to shorten or lenghten it until it's one unit long. This is important for movement, because if we don't clamp the length, we might get our object moving slower or faster than we want.
+
+The final check we need to do with the ball is to tell if it's gone off the left or right side of the screen. To wit:
+
+        # Check gameover
+        if (ball_pos.x < 0 or ball_pos.x > screen_size.x):
+            ball_pos = screen_size*0.5
+            ball_speed = INITIAL_BALL_SPEED
+            direction = Vector2(-1, 0)
+
+This is considerably simpler than the last two. If the ball is off the left edge or the right edge, then:
+  Set its position to the center of the screen
+  Reset its speed (which by this point is likely faster than 80 pix/sec)
+  reset its direction (-1, 0 is known to be a normalized vector, and doesn't need normalizing)
+
+Our final operation on the ball is to set is pos:
+
+        get_node("ball").set_pos(ball_pos)
+
+At this point, make sure everyone has been saving regularly, and test the game. We do not have the ability to move the paddles yet, but the ball should move fine.
+
+The last thing we need to do is to allow the paddles to move. We do this using the Input class, which tells us what stuff the player is pressing. First, get the left paddle's position:
+
+        # Left paddle movement block
+        var left_pos = get_node("left").get_pos()
+
+And then use the player's input to determine how to move it:
+
+        if (left_pos.y > 0 and Input.is_action_pressed("left_move_up")):
+            left_pos.y += -PAD_SPEED * delta
+        if (left_pos.y < screen_size.y and Input.is_action_pressed("left_move_down")):
+            left_pos.y += PAD_SPEED * delta
+            
+Both if statements say, "if the player is telling us to move up/down and we aren't already at the top/bottom, move up/down". Note that we are again using the delta value. If both buttons are held, they will cancel each other out.
+Finally, set our position:
+
+        get_node("left").set_pos(left_pos)
+
+The right paddle is nearly identical:
+
+        # Move right pad
+        var right_pos = get_node("right").get_pos()
+
+        if (right_pos.y > 0 and Input.is_action_pressed("right_move_up")):
+            right_pos.y += -PAD_SPEED * delta
+        if (right_pos.y < screen_size.y and Input.is_action_pressed("right_move_down")):
+            right_pos.y += PAD_SPEED * delta
+
+        get_node("right").set_pos(right_pos)
+
+This concludes the lesson. Students should be able to control both paddles, and the ball should behave as expected.
