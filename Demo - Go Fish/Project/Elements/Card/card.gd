@@ -64,12 +64,12 @@ func _ready():
 # Updates the card's face texture.
 func update_card_face():
 	if suit == "joker" or rank == 0:
-		card_face = load("res://Cards/Faces/joker.png")
+		card_face = load("res://Elements/Card/Faces/joker.png")
 	else:
 		var filename = rank
 		if rank == 1 or rank > 10:
 			filename = RANK_NAMES[rank]
-		var path = "res://Cards/Faces/%s/%s.png" % [suit.capitalize(), filename]
+		var path = "res://Elements/Card/Faces/%s/%s.png" % [suit.capitalize(), filename]
 		card_face = load(path)
 
 # Flips the card. If 'to' is specified as a boolean, it will set the current

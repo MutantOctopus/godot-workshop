@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=1]
 
-[ext_resource path="res://Cards/Backs/blue1.png" type="Texture" id=1]
-[ext_resource path="res://Cards/card.gd" type="Script" id=2]
-[ext_resource path="res://Cards/SFX/card-SFX-lib.tres" type="SampleLibrary" id=3]
+[ext_resource path="res://Elements/Card/Backs/blue1.png" type="Texture" id=1]
+[ext_resource path="res://Elements/Card/card.gd" type="Script" id=2]
+[ext_resource path="res://Elements/Card/SFX/card-SFX-lib.tres" type="SampleLibrary" id=3]
 
 [node name="card" type="Sprite"]
 
