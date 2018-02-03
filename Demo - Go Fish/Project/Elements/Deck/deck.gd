@@ -63,8 +63,17 @@ func fill_deck(new_back = null):
 	update_sprite()
 
 # Shuffles the order of the cards currently in the deck.
+# uses the fisher-yates shuffle algorithm
+# UNTESTED
 func shuffle():
-	pass
+	# this range will count down through the card list index, down to 1
+	# note that range() returns an array of integers
+	for i in range(1, cards.size()).invert():
+		j = randi() % i
+		var temp = cards[i]
+		cards[i] = cards[j]
+		cards[j] = temp
+	update_sprite()
 
 # Pops a card's data off the top of the deck, and retuns a node representing it.
 # If the last card is taken, sets the sprite texture to null.
