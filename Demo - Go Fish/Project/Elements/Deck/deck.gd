@@ -71,7 +71,7 @@ func shuffle():
 func draw_card():
 	pass
 
-# Places a card node on the top of the deck.
+# Takes a card node, and places it as data on top of the deck.
 func place_card(card):
 	pass
 
