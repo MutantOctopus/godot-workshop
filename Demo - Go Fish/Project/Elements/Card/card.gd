@@ -37,7 +37,7 @@ const CARD_PATH_FORMAT = "res://Elements/Cards/Faces/%s/%s.png"
 # The path to the Joker card face.
 const JOKER_PATH = "res://Elements/Cards/Faces/joker.png"
 # List of valid suits for a card.
-const VALID_SUITS = ["joker", "clubs", "spades", "diamonds", "hearts"]
+const VALID_SUITS = ["hearts", "clubs", "diamonds", "spades", "joker"]
 # List which represents the various card ranks as text,
 # e.g. ace, two, three... jack, queen, king
 # 0 is 'joker' for buffer
