@@ -29,9 +29,13 @@ var card_face setget _no_set
 # =================================================================== #
 # The path to the default card back, used when 'card_back' is null on
 # ready, currently the plain blue card back
-const DEFAULT_BACK_PATH = "res://Cards/Backs/blue1.png"
+const DEFAULT_BACK_PATH = "res://Elements/Cards/Backs/blue1.png"
+# The format string for any given card. Formatted with two variables:
+# [suit]: Clubs, Diamonds, Hearts, or Spades
+# [rank]: ace, 1, 2 ... 9, 10, jack, queen, king
+const CARD_PATH_FORMAT = "res://Elements/Cards/Faces/%s/%s.png"
 # The path to the Joker card face.
-const JOKER_PATH = "res://Cards/Faces/joker.png"
+const JOKER_PATH = "res://Elements/Cards/Faces/joker.png"
 # List of valid suits for a card.
 const VALID_SUITS = ["joker", "clubs", "spades", "diamonds", "hearts"]
 # List which represents the various card ranks as text,
@@ -64,12 +68,12 @@ func _ready():
 # Updates the card's face texture.
 func update_card_face():
 	if suit == "joker" or rank == 0:
-		card_face = load("res://Elements/Card/Faces/joker.png")
+		card_face = load(JOKER_PATH)
 	else:
 		var filename = rank
 		if rank == 1 or rank > 10:
 			filename = RANK_NAMES[rank]
-		var path = "res://Elements/Card/Faces/%s/%s.png" % [suit.capitalize(), filename]
+		var path = CARD_PATH_FORMAT % [suit.capitalize(), filename]
 		card_face = load(path)
 
 # Flips the card. If 'to' is specified as a boolean, it will set the current
