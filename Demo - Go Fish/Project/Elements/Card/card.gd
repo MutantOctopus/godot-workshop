@@ -102,6 +102,29 @@ func _flip_card():
 	get_node("sfx").play(sfx_string)
 
 # =================================================================== #
+# STATIC FUNCTIONS                                                    #
+# =================================================================== #
+# Retrieves the card texture for a given rank and suit.
+# Can be used by other scripts.
+static func get_face_texture(suit, rank):
+	# ensure lowercase
+	suit = suit.to_lower()
+	var tex = null
+	# joker is a special case
+	if suit == "joker" or rank == 0:
+		tex = load(JOKER_PATH)
+	elif suit in VALID_SUITS and rank >= 1 and rank <= 13:
+		if rank == 1 or rank > 10:
+			rank = RANK_NAMES[rank]
+		tex = load(CARD_PATH_FORMAT % [suit.capitalize, rank])
+	elif not (suit in VALID_SUITS):
+		printerr("get_face_texture passed invalid suit %s" % suit)
+	elif not (rank in range(0, 14)):
+		printerr("get_face_texture passed invalid rank %s" % rank)
+	else: printerr("get_face_texture failed for unknown reason with values:\nsuit: %s\nrank: %s" % [suit, rank])
+	return tex
+
+# =================================================================== #
 # SETTER FUNCTIONS                                                    #
 # =================================================================== #
 # Setter function for the 'suit' variable.
