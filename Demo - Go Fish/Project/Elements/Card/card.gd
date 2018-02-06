@@ -33,9 +33,9 @@ const DEFAULT_BACK_PATH = "res://Elements/Cards/Backs/blue1.png"
 # The format string for any given card. Formatted with two variables:
 # [suit]: Clubs, Diamonds, Hearts, or Spades
 # [rank]: ace, 1, 2 ... 9, 10, jack, queen, king
-const CARD_PATH_FORMAT = "res://Elements/Cards/Faces/%s/%s.png"
+const CARD_PATH_FORMAT = "res://Elements/Card/Faces/%s/%s.png"
 # The path to the Joker card face.
-const JOKER_PATH = "res://Elements/Cards/Faces/joker.png"
+const JOKER_PATH = "res://Elements/Card/Faces/joker.png"
 # List of valid suits for a card.
 const VALID_SUITS = ["hearts", "clubs", "diamonds", "spades", "joker"]
 # List which represents the various card ranks as text,
@@ -116,7 +116,7 @@ static func get_face_texture(suit, rank):
 	elif suit in VALID_SUITS and rank >= 1 and rank <= 13:
 		if rank == 1 or rank > 10:
 			rank = RANK_NAMES[rank]
-		tex = load(CARD_PATH_FORMAT % [suit.capitalize, rank])
+		tex = load(CARD_PATH_FORMAT % [suit.capitalize(), rank])
 	elif not (suit in VALID_SUITS):
 		printerr("get_face_texture passed invalid suit %s" % suit)
 	elif not (rank in range(0, 14)):
