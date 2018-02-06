@@ -104,13 +104,15 @@ func draw_card():
 		printerr("Attempted to draw card from empty deck.")
 		return null
 	else:
-		# notice that pop_front unintuitively does not return the popped item
-		var card_data = cards.front()
-		cards.pop_front()
+		# notice that 'pop' methods unintuitively do not return the popped item
+		var card_data = cards.back()
+		cards.pop_back()
 		var card = CARD_SCENE.instance()
 		card.suit = card_data["suit"]
 		card.rank = card_data["rank"]
 		card.back = card_data["back"]
+		_top_changed_flag = true
+		update_sprite()
 		return card
 
 # Takes a card node, and places it as data on top of the deck.
@@ -119,17 +121,19 @@ func place_card(card):
 
 # updates the sprite
 func update_sprite():
-	var top_card = cards.back()
-	if top_card == null: # there are no cards
+	if cards.size() == 0:
 		set_texture(null)
-	elif face_up: # there is a card, and the deck is face-up
-		if _top_changed_flag:
-			# print("loading new card face")
-			top_card_face = CARD_CLASS.get_face_texture(top_card["suit"], top_card["rank"])
-			_top_changed_flag = false
-		set_texture(top_card_face)
-	else: # there is a card, and the deck is face-down
-		set_texture(top_card["back"])
+	else:
+		var top_card = cards.back()
+		if face_up:
+			if _top_changed_flag:
+				# print("loading new card face")
+				top_card_face = CARD_CLASS.get_face_texture(
+					top_card["suit"], top_card["rank"])
+				_top_changed_flag = false
+			set_texture(top_card_face)
+		else: # there is a card, and the deck is face-down
+			set_texture(top_card["back"])
 
 # =================================================================== #
 # SETTER FUNCTIONS                                                    #
