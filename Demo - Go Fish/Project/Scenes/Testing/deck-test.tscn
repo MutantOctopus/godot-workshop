@@ -27,7 +27,7 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
-margin/bottom = 0.263158
+margin/bottom = 0.23
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -44,9 +44,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 0.368421
+margin/top = 0.27
 margin/right = 0.0
-margin/bottom = 0.631579
+margin/bottom = 0.48
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -57,19 +57,38 @@ flat = false
 
 anchor/top = 2
 anchor/right = 1
+anchor/bottom = 2
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.52
+margin/right = 0.0
+margin/bottom = 0.73
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Face deck down"
+flat = false
+
+[node name="draw" type="Button" parent="Control"]
+
+anchor/top = 2
+anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 0.736842
+margin/top = 0.77
 margin/right = 0.0
-margin/bottom = 0.0
+margin/bottom = 1.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "Face deck down"
+text = "Draw card"
 flat = false
 
 [node name="deck" parent="." instance=ExtResource( 1 )]

@@ -36,6 +36,8 @@ var top_card_face = null
 # =================================================================== #
 # Reference to card script, for accessing constants
 const CARD_CLASS = preload("res://Elements/Card/card.gd")
+# reference to card scene, for creating cards
+const CARD_SCENE = preload("res://Elements/Card/card.tscn")
 
 # =================================================================== #
 # ENGINE FUNCTIONS                                                    #
@@ -96,8 +98,20 @@ func shuffle():
 
 # Pops a card's data off the top of the deck, and retuns a node representing it.
 # If the last card is taken, sets the sprite texture to null.
+# If there is no card in the deck, returns null.
 func draw_card():
-	pass
+	if cards.size() == 0:
+		printerr("Attempted to draw card from empty deck.")
+		return null
+	else:
+		# notice that pop_front unintuitively does not return the popped item
+		var card_data = cards.front()
+		cards.pop_front()
+		var card = CARD_SCENE.instance()
+		card.suit = card_data["suit"]
+		card.rank = card_data["rank"]
+		card.back = card_data["back"]
+		return card
 
 # Takes a card node, and places it as data on top of the deck.
 func place_card(card):
