@@ -10,5 +10,6 @@ script/script = ExtResource( 2 )
 card_back = null
 auto_fill = true
 auto_shuffle = true
+face_up = false
 
 

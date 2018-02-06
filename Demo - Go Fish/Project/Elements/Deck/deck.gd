@@ -10,6 +10,9 @@ export(Texture) var card_back
 export(bool) var auto_fill = true
 # similar to above: after autofill in _ready, whether the deck should be shuffled
 export(bool) var auto_shuffle = true
+# determines whether the deck should display the back or the face of the
+# top card
+export(bool) var face_up = false
 
 # =================================================================== #
 # MEMBER VARIABLES                                                    #
@@ -20,6 +23,13 @@ export(bool) var auto_shuffle = true
 # "rank" : value from 0-13, with 0 representing a joker
 # "back" : a Texture representing the card's back
 var cards = []
+
+# bool which indicates when the top of the deck has been updated.
+# true means the texture needs to be reevaluated.
+var _top_changed_flag = true setget _no_set
+# Saved texture for the top of the deck.
+# Isn't set until the deck is actually faceup.
+var top_card_face = null
 
 # =================================================================== #
 # CONSTANTS                                                           #
@@ -60,6 +70,7 @@ func fill_deck(new_back = null):
 			cards.append({"suit":suit, "rank":rank, "back":these_back})
 	
 	# since the deck's appearance might have changed...
+	_top_changed_flag = true
 	update_sprite()
 
 # Shuffles the order of the cards currently in the deck.
@@ -73,6 +84,7 @@ func shuffle():
 		var temp = cards[i]
 		cards[i] = cards[j]
 		cards[j] = temp
+	_top_changed_flag = true
 	update_sprite()
 
 # Pops a card's data off the top of the deck, and retuns a node representing it.
@@ -87,3 +99,19 @@ func place_card(card):
 # updates the sprite
 func update_sprite():
 	pass
+
+# =================================================================== #
+# SETTER FUNCTIONS                                                    #
+# =================================================================== #
+# sets whether the deck is face-up or face-down.
+# If changed, updates the visuals of the deck.
+func _set_facing(value):
+	if value != face_up:
+		face_up = value
+		update_sprite()
+
+# A function which does not set the requested value,
+# used when a variable cannot be set outside the
+# script.
+func _no_set(value):
+	printerr("Attempted to set an unsettable value to %s" % value)
