@@ -98,7 +98,16 @@ func place_card(card):
 
 # updates the sprite
 func update_sprite():
-	pass
+	var top_card = cards.back()
+	if top_card == null: # there are no cards
+		set_texture(null)
+	elif face_up: # there is a card, and the deck is face-up
+		if _top_changed_flag:
+			top_card_face = CARD_CLASS.get_face_texture(top_card["suit"], top_card["rank"])
+			_top_changed_flag = false
+		set_texture(top_card_face)
+	else: # there is a card, and the deck is face-down
+		set_texture(top_card["back"])
 
 # =================================================================== #
 # SETTER FUNCTIONS                                                    #
