@@ -41,6 +41,9 @@ const CARD_CLASS = preload("res://Elements/Card/card.gd")
 # ENGINE FUNCTIONS                                                    #
 # =================================================================== #
 func _ready():
+	# without this function call, shuffle will return the same sequence
+	# of results each time.
+	randomize()
 	if auto_fill:
 		fill_deck()
 		if auto_shuffle:
@@ -79,8 +82,12 @@ func fill_deck(new_back = null):
 func shuffle():
 	# this range will count down through the card list index, down to 1
 	# note that range() returns an array of integers
-	for i in range(1, cards.size()).invert():
-		j = randi() % i
+	var nums = range(1, cards.size())
+	# note for future reference:
+	# invert operates on the array, doesn't return a new array
+	nums.invert()
+	for i in nums:
+		var j = randi() % i
 		var temp = cards[i]
 		cards[i] = cards[j]
 		cards[j] = temp
@@ -103,6 +110,7 @@ func update_sprite():
 		set_texture(null)
 	elif face_up: # there is a card, and the deck is face-up
 		if _top_changed_flag:
+			# print("loading new card face")
 			top_card_face = CARD_CLASS.get_face_texture(top_card["suit"], top_card["rank"])
 			_top_changed_flag = false
 		set_texture(top_card_face)
