@@ -76,7 +76,9 @@ flat = false
 
 transform/pos = Vector2( 100, 120 )
 texture = ExtResource( 2 )
-card_back = ExtResource( 2 )
+suit = "clubs"
+rank = 7
+back = ExtResource( 2 )
 
 [connection signal="pressed" from="Control/flip" to="card" method="flip"]
 

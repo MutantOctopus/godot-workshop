@@ -2,9 +2,17 @@ extends Sprite
 # =================================================================== #
 # EXPORT VARIABLES                                                    #
 # =================================================================== #
+# The current suit of the card. If not set to a valid suit, defaults
+# to joker.
+export(String, "joker", "hearts", "clubs", "diamonds", "spades")\
+	var suit = "joker" setget _set_suit
+# The current rank (ace, two, three... jack, queen, king) of the
+# card. If the value is invalid, the card will be displayed as a
+# joker. Valid values are 1-13, or 0 for joker.
+export(int, 0, 13) var rank = 0 setget _set_rank
 # The back of the card. Defaults to the basic blue back if none is
 # specified.
-export(Texture) var card_back
+export(Texture) var back
 
 # =================================================================== #
 # MEMBER VARIABLES                                                    #
@@ -14,22 +22,15 @@ export(Texture) var card_back
 # setter function: flip(to)
 # getter function: n/a
 var flipped = false setget flip
-# The current suit of the card. If not set to a valid suit, defaults
-# to joker.
-var suit = "joker" setget _set_suit
-# The current rank (ace, two, three... jack, queen, king) of the
-# card. If the value is invalid, the card will be displayed as a
-# joker. Valid values are 1-13, or 0 for joker.
-var rank = 0 setget _set_rank
 # The current card face. Cannot be set outside of this script.
-var card_face setget _no_set
+var face setget _no_set
 
 # =================================================================== #
 # CONSTANTS                                                           #
 # =================================================================== #
-# The path to the default card back, used when 'card_back' is null on
+# The path to the default card back, used when 'back' is null on
 # ready, currently the plain blue card back
-const DEFAULT_BACK_PATH = "res://Elements/Cards/Backs/blue1.png"
+const DEFAULT_BACK_PATH = "res://Elements/Card/Backs/blue1.png"
 # The format string for any given card. Formatted with two variables:
 # [suit]: Clubs, Diamonds, Hearts, or Spades
 # [rank]: ace, 1, 2 ... 9, 10, jack, queen, king
@@ -51,11 +52,11 @@ const RANK_NAMES = ["joker", "ace", "two", "three", "four",
 func _ready():
 	# First things first, determine what face to use for the card
 	update_card_face()
-	# Then, if card_back is null, give it a default
-	if card_back == null:
-		card_back = load(DEFAULT_BACK_PATH)
+	# Then, if back is null, give it a default
+	if back == null:
+		back = load(DEFAULT_BACK_PATH)
 	# Finally, set the card back texture
-	set_texture(card_back)
+	set_texture(back)
 	# Finally, shuffle the randomizer.
 	# This is important - otherwise, the same random number
 	# (and therefore, the same 'flip' and 'slide' sfx)
@@ -68,13 +69,13 @@ func _ready():
 # Updates the card's face texture.
 func update_card_face():
 	if suit == "joker" or rank == 0:
-		card_face = load(JOKER_PATH)
+		face = load(JOKER_PATH)
 	else:
 		var filename = rank
 		if rank == 1 or rank > 10:
 			filename = RANK_NAMES[rank]
 		var path = CARD_PATH_FORMAT % [suit.capitalize(), filename]
-		card_face = load(path)
+		face = load(path)
 
 # Flips the card. If 'to' is specified as a boolean, it will set the current
 # flipped state to the argument; 'true' is up, 'false' is down. If 'to' is
@@ -94,7 +95,7 @@ func flip(to = null):
 
 # Changes the current sprite displayed, and plays a 'flip' sfx.
 func _flip_card():
-	set_texture(card_face if flipped else card_back)
+	set_texture(face if flipped else back)
 	#   randi           => 1 to 2,147,483,647 (max int);
 	#  (randi % 3)      => 0, 1, 2 via modulus;
 	# ((randi % 3) + 1) => 1, 2, 3
@@ -144,7 +145,7 @@ func _set_suit(value):
 # Will set value to 0 if outside range.
 func _set_rank(value):
 	if value > 13 or value < 0:
-		print("Attempted rank set to value outside range: %d" % value)
+		printerr("Attempted rank set to value outside range: %d" % value)
 		value = 0
 	rank = value
 	update_card_face()
