@@ -7,6 +7,7 @@
 [node name="Node" type="Node"]
 
 script/script = ExtResource( 1 )
+movement_time = 0.5
 
 [node name="deck1-buttons" type="VBoxContainer" parent="."]
 
@@ -88,6 +89,7 @@ flat = false
 
 [node name="hold-buttons" type="VBoxContainer" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -242,6 +244,13 @@ texture = null
 auto_fill = false
 auto_shuffle = false
 
+[node name="Tween" type="Tween" parent="."]
+
+playback/process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
 [connection signal="pressed" from="deck1-buttons/shuffle" to="deck-1" method="shuffle"]
 
 [connection signal="pressed" from="deck1-buttons/faceup" to="deck-1" method="_set_facing" binds= [ true ]]
@@ -257,5 +266,7 @@ auto_shuffle = false
 [connection signal="pressed" from="deck2-buttons/faceup" to="deck-2" method="_set_facing" binds= [ true ]]
 
 [connection signal="pressed" from="deck2-buttons/facedown" to="deck-2" method="_set_facing" binds= [ false ]]
+
+[connection signal="tween_complete" from="Tween" to="." method="_on_tween_complete"]
 
 
