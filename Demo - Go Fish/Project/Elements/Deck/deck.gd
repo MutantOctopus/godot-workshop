@@ -24,9 +24,10 @@ export(bool) var face_up = false
 # "back" : a Texture representing the card's back
 var cards = []
 
-# bool which indicates when the top of the deck has been updated.
-# true means the texture needs to be reevaluated.
-var _top_changed_flag = true setget _no_set
+# bool which indicates that the top of the deck has been changed since
+# the last time the face of the top card was shown, and therefore the
+# texture needs to be reloaded when the deck is next flipped over.
+var _reload_face = true setget _no_set
 # Saved texture for the top of the deck.
 # Isn't set until the deck is actually faceup.
 var top_card_face = null
@@ -75,7 +76,6 @@ func fill_deck(new_back = null):
 			cards.append({"suit":suit, "rank":rank, "back":these_back})
 	
 	# since the deck's appearance might have changed...
-	_top_changed_flag = true
 	update_sprite()
 
 # Shuffles the order of the cards currently in the deck.
@@ -93,7 +93,6 @@ func shuffle():
 		var temp = cards[i]
 		cards[i] = cards[j]
 		cards[j] = temp
-	_top_changed_flag = true
 	update_sprite()
 
 # Pops a card's data off the top of the deck, and retuns a node representing it.
@@ -111,7 +110,6 @@ func draw_card():
 		card.suit = card_data["suit"]
 		card.rank = card_data["rank"]
 		card.back = card_data["back"]
-		_top_changed_flag = true
 		update_sprite()
 		return card
 
@@ -121,24 +119,36 @@ func draw_card():
 func place_card(card):
 	cards.append({"suit": card.suit, "rank": card.rank, "back": card.back})
 	card.queue_free()
-	_top_changed_flag = true
 	update_sprite()
 
 # updates the sprite
-func update_sprite():
+# optional argument says whether the top card of the deck has been
+# changed; defaults to true.
+func update_sprite(top_changed = true):
 	if cards.size() == 0:
+		# no cards = no texture, and we can end here.
+		# this encompasses both faceup and facedown, so we
+		# can ignore the _reload_face flag.
 		set_texture(null)
 	else:
 		var top_card = cards.back()
-		if face_up:
-			if _top_changed_flag:
-				# print("loading new card face")
+		if not face_up:
+			# if we aren't currently faceup, we can skip loading
+			# the new card face texture; however, we need to flag that
+			# the texture will need to be loaded later.
+			# _reload_face is our flag for this occasion.
+			_reload_face = _reload_face or top_changed
+			set_texture(top_card["back"])
+		else:
+			# `top_changed or _reload_face` tells us if we need a new
+			# card texture.
+			if top_changed or _reload_face:
 				top_card_face = CARD_CLASS.get_face_texture(
 					top_card["suit"], top_card["rank"])
-				_top_changed_flag = false
+				# now that the new face has been loaded, we no longer
+				# need to have this flag raised
+				_reload_face = false
 			set_texture(top_card_face)
-		else: # there is a card, and the deck is face-down
-			set_texture(top_card["back"])
 
 # =================================================================== #
 # SETTER FUNCTIONS                                                    #
@@ -148,7 +158,10 @@ func update_sprite():
 func _set_facing(value):
 	if value != face_up:
 		face_up = value
-		update_sprite()
+		# Since we aren't changing the top of the deck, merely flipping
+		# the cards over, we don't need to update the sprite.
+		# hence, we pass the optional 'false'.
+		update_sprite(false)
 
 # A function which does not set the requested value,
 # used when a variable cannot be set outside the
