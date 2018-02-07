@@ -115,7 +115,7 @@ func draw_card():
 
 # Takes a card node, places it as data on top of the deck, and queues
 # the node to be deleted from memory.
-# Assumes that the card has already been removed from the scene tree.
+# Assumes that the card has not been removed from the scene tree.
 func place_card(card):
 	cards.append({"suit": card.suit, "rank": card.rank, "back": card.back})
 	card.queue_free()

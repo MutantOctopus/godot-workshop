@@ -21,6 +21,5 @@ func draw_card():
 
 func place_card():
 	if not held_card == null:
-		remove_child(held_card)
 		deck2.place_card(held_card)
 		held_card = null
