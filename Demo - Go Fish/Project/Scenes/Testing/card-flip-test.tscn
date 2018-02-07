@@ -5,7 +5,7 @@
 
 [node name="Node" type="Node"]
 
-[node name="Control" type="Control" parent="."]
+[node name="buttons" type="VBoxContainer" parent="."]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -13,59 +13,52 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 200.0
 margin/top = 25.0
-margin/right = 320.0
+margin/right = 340.0
 margin/bottom = 215.0
+alignment = 0
 
-[node name="flip" type="Button" parent="Control"]
+[node name="flip" type="Button" parent="buttons"]
 
-anchor/right = 1
-anchor/bottom = 2
 focus/ignore_mouse = false
 focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
+size_flags/horizontal = 3
+size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.263158
+margin/right = 140.0
+margin/bottom = 60.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "Flip card"
 flat = false
 
-[node name="faceup" type="Button" parent="Control"]
+[node name="faceup" type="Button" parent="buttons"]
 
-anchor/top = 2
-anchor/right = 1
-anchor/bottom = 2
 focus/ignore_mouse = false
 focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
+size_flags/horizontal = 3
+size_flags/vertical = 3
 margin/left = 0.0
-margin/top = 0.368421
-margin/right = 0.0
-margin/bottom = 0.631579
+margin/top = 64.0
+margin/right = 140.0
+margin/bottom = 124.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "Face card up"
 flat = false
 
-[node name="facedown" type="Button" parent="Control"]
+[node name="facedown" type="Button" parent="buttons"]
 
-anchor/top = 2
-anchor/right = 1
-anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
+size_flags/horizontal = 3
+size_flags/vertical = 3
 margin/left = 0.0
-margin/top = 0.736842
-margin/right = 0.0
-margin/bottom = 0.0
+margin/top = 128.0
+margin/right = 140.0
+margin/bottom = 190.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -80,10 +73,10 @@ suit = "clubs"
 rank = 7
 back = ExtResource( 2 )
 
-[connection signal="pressed" from="Control/flip" to="card" method="flip"]
+[connection signal="pressed" from="buttons/flip" to="card" method="flip"]
 
-[connection signal="pressed" from="Control/faceup" to="card" method="flip" binds= [ true ]]
+[connection signal="pressed" from="buttons/faceup" to="card" method="flip" binds= [ true ]]
 
-[connection signal="pressed" from="Control/facedown" to="card" method="flip" binds= [ false ]]
+[connection signal="pressed" from="buttons/facedown" to="card" method="flip" binds= [ false ]]
 
 
