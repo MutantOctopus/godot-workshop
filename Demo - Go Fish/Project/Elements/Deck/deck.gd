@@ -115,9 +115,14 @@ func draw_card():
 		update_sprite()
 		return card
 
-# Takes a card node, and places it as data on top of the deck.
+# Takes a card node, places it as data on top of the deck, and queues
+# the node to be deleted from memory.
+# Assumes that the card has already been removed from the scene tree.
 func place_card(card):
-	pass
+	cards.append({"suit": card.suit, "rank": card.rank, "back": card.back})
+	card.queue_free()
+	_top_changed_flag = true
+	update_sprite()
 
 # updates the sprite
 func update_sprite():
