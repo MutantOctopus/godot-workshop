@@ -8,7 +8,7 @@
 
 script/script = ExtResource( 1 )
 
-[node name="Control" type="Control" parent="."]
+[node name="buttons" type="VBoxContainer" parent="."]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -16,78 +16,69 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 200.0
 margin/top = 25.0
-margin/right = 320.0
+margin/right = 340.0
 margin/bottom = 215.0
+custom_constants/separation = 10
+alignment = 1
 
-[node name="shuffle" type="Button" parent="Control"]
+[node name="shuffle" type="Button" parent="buttons"]
 
-anchor/right = 1
-anchor/bottom = 2
 focus/ignore_mouse = false
 focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
+size_flags/horizontal = 3
+size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.23
+margin/right = 140.0
+margin/bottom = 40.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "Shuffle deck"
 flat = false
 
-[node name="faceup" type="Button" parent="Control"]
+[node name="faceup" type="Button" parent="buttons"]
 
-anchor/top = 2
-anchor/right = 1
-anchor/bottom = 2
 focus/ignore_mouse = false
 focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
+size_flags/horizontal = 3
+size_flags/vertical = 3
 margin/left = 0.0
-margin/top = 0.27
-margin/right = 0.0
-margin/bottom = 0.48
+margin/top = 50.0
+margin/right = 140.0
+margin/bottom = 90.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "Face deck up"
 flat = false
 
-[node name="facedown" type="Button" parent="Control"]
+[node name="facedown" type="Button" parent="buttons"]
 
-anchor/top = 2
-anchor/right = 1
-anchor/bottom = 2
 focus/ignore_mouse = false
 focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
+size_flags/horizontal = 3
+size_flags/vertical = 3
 margin/left = 0.0
-margin/top = 0.52
-margin/right = 0.0
-margin/bottom = 0.73
+margin/top = 100.0
+margin/right = 140.0
+margin/bottom = 140.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "Face deck down"
 flat = false
 
-[node name="draw" type="Button" parent="Control"]
+[node name="draw" type="Button" parent="buttons"]
 
-anchor/top = 2
-anchor/right = 1
-anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
+size_flags/horizontal = 3
+size_flags/vertical = 3
 margin/left = 0.0
-margin/top = 0.77
-margin/right = 0.0
-margin/bottom = 1.0
+margin/top = 150.0
+margin/right = 140.0
+margin/bottom = 190.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -102,14 +93,14 @@ card_back = ExtResource( 3 )
 
 [node name="pos" type="Position2D" parent="."]
 
-transform/pos = Vector2( 420, 120 )
+transform/pos = Vector2( 440, 120 )
 
-[connection signal="pressed" from="Control/shuffle" to="deck" method="shuffle"]
+[connection signal="pressed" from="buttons/shuffle" to="deck" method="shuffle"]
 
-[connection signal="pressed" from="Control/faceup" to="deck" method="_set_facing" binds= [ true ]]
+[connection signal="pressed" from="buttons/faceup" to="deck" method="_set_facing" binds= [ true ]]
 
-[connection signal="pressed" from="Control/facedown" to="deck" method="_set_facing" binds= [ false ]]
+[connection signal="pressed" from="buttons/facedown" to="deck" method="_set_facing" binds= [ false ]]
 
-[connection signal="pressed" from="Control/draw" to="." method="draw_card"]
+[connection signal="pressed" from="buttons/draw" to="." method="draw_card"]
 
 
