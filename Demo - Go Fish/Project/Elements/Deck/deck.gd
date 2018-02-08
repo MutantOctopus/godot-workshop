@@ -9,7 +9,7 @@ export(Texture) var card_back
 # via the fill_deck function
 export(bool) var auto_fill = true
 # similar to above: after autofill in _ready, whether the deck should be shuffled
-export(bool) var auto_shuffle = true
+export(bool) var auto_shuffle = false
 # determines whether the deck should display the back or the face of the
 # top card
 export(bool) var face_up = false
@@ -44,6 +44,8 @@ const CARD_SCENE = preload("res://Elements/Card/card.tscn")
 # ENGINE FUNCTIONS                                                    #
 # =================================================================== #
 func _ready():
+	if card_back == null:
+		card_back = load(CARD_CLASS.DEFAULT_BACK_PATH)
 	# without this function call, shuffle will return the same sequence
 	# of results each time.
 	randomize()
