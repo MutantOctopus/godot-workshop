@@ -1,4 +1,4 @@
-extends Sprite
+extends "res://Scripts/clickable-sprite.gd"
 
 # =================================================================== #
 # EXPORT VARIABLES                                                    #
