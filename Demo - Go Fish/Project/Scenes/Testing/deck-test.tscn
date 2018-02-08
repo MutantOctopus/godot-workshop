@@ -242,7 +242,6 @@ transform/pos = Vector2( 270, 120 )
 transform/pos = Vector2( 440, 120 )
 texture = null
 auto_fill = false
-auto_shuffle = false
 
 [node name="Tween" type="Tween" parent="."]
 
