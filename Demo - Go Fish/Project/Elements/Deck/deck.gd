@@ -78,7 +78,7 @@ func fill_deck(new_back = null):
 			cards.append({"suit":suit, "rank":rank, "back":these_back})
 	
 	# since the deck's appearance might have changed...
-	update_sprite()
+	update_count()
 
 # Shuffles the order of the cards currently in the deck.
 # uses the fisher-yates shuffle algorithm
@@ -112,7 +112,7 @@ func draw_card():
 		card.suit = card_data["suit"]
 		card.rank = card_data["rank"]
 		card.back = card_data["back"]
-		update_sprite()
+		update_count()
 		return card
 
 # Takes a card node, places it as data on top of the deck, and queues
@@ -121,6 +121,14 @@ func draw_card():
 func place_card(card):
 	cards.append({"suit": card.suit, "rank": card.rank, "back": card.back})
 	card.queue_free()
+	update_count()
+
+func update_count():
+	get_node("counter").set_text(
+		"" if cards.size() == 0 else str(cards.size())
+	)
+	
+	# anything which updates the count will update the deck
 	update_sprite()
 
 # updates the sprite

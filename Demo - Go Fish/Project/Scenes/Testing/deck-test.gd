@@ -14,6 +14,7 @@ func _ready():
 	deck1 = get_node("deck-1")
 	deck2 = get_node("deck-2")
 	tween = get_node("Tween")
+
 func draw_card():
 	if held_card == null and not animating:
 		var card = deck1.draw_card()
