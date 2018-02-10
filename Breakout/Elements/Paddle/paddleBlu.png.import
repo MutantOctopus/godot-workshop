@@ -2,14 +2,14 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/paddleBlu.png-5e0cec1de351bd71a3f68226ad14ffef.stex"
+path="res://.import/paddleBlu.png-e68dee3890762aaac26e46eac25d257b.stex"
 
 [deps]
 
-source_file="res://Sprites/Breakout/paddleBlu.png"
+source_file="res://Elements/Paddle/paddleBlu.png"
 source_md5="e35d391105377e5401e6090a923943ef"
 
-dest_files=[ "res://.import/paddleBlu.png-5e0cec1de351bd71a3f68226ad14ffef.stex" ]
+dest_files=[ "res://.import/paddleBlu.png-e68dee3890762aaac26e46eac25d257b.stex" ]
 dest_md5="08b27f0e61d5a0653023404159a140b7"
 
 [params]
