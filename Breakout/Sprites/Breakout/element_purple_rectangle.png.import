@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ballGrey.png-b64591da676f492636f45d4706bcbfb5.stex"
+path="res://.import/element_purple_rectangle.png-816ab198ae03792ec39501aa950bd9a3.stex"
 
 [deps]
 
-source_file="res://Sprites/Puzzle-Pack/ballGrey.png"
-source_md5="b809a6bdf2f27f8200a97440ec19294b"
+source_file="res://Sprites/Breakout/element_purple_rectangle.png"
+source_md5="f3e4f4c97b952af797470ece95e4ac19"
 
-dest_files=[ "res://.import/ballGrey.png-b64591da676f492636f45d4706bcbfb5.stex" ]
-dest_md5="d534d157e1012f0fce6ce73ab08c88c3"
+dest_files=[ "res://.import/element_purple_rectangle.png-816ab198ae03792ec39501aa950bd9a3.stex" ]
+dest_md5="6fb046d23700610f9505210d1298ff17"
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/paddleBlu.png-8a88c181bb41129860f9fa4d9273a90d.stex"
+path="res://.import/element_green_rectangle_glossy.png-81ea95af5bea5c84363a4bd9eea2236a.stex"
 
 [deps]
 
-source_file="res://Sprites/Puzzle-Pack/paddleBlu.png"
-source_md5="e35d391105377e5401e6090a923943ef"
+source_file="res://Sprites/Breakout/element_green_rectangle_glossy.png"
+source_md5="ed11772225475b9c5e76c7841ce0a621"
 
-dest_files=[ "res://.import/paddleBlu.png-8a88c181bb41129860f9fa4d9273a90d.stex" ]
-dest_md5="08b27f0e61d5a0653023404159a140b7"
+dest_files=[ "res://.import/element_green_rectangle_glossy.png-81ea95af5bea5c84363a4bd9eea2236a.stex" ]
+dest_md5="eabedb950635b9bcdeb358f6631174b7"
 
 [params]
 

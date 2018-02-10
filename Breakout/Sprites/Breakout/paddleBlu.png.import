@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ballBlue.png-5d140fbe2facde5a35b3e80857f0228b.stex"
+path="res://.import/paddleBlu.png-5e0cec1de351bd71a3f68226ad14ffef.stex"
 
 [deps]
 
-source_file="res://Sprites/Puzzle-Pack/ballBlue.png"
-source_md5="7a5833fb732aaa388512cdb8049d7ca3"
+source_file="res://Sprites/Breakout/paddleBlu.png"
+source_md5="e35d391105377e5401e6090a923943ef"
 
-dest_files=[ "res://.import/ballBlue.png-5d140fbe2facde5a35b3e80857f0228b.stex" ]
-dest_md5="44e6c535093601bfc910b493878ff63f"
+dest_files=[ "res://.import/paddleBlu.png-5e0cec1de351bd71a3f68226ad14ffef.stex" ]
+dest_md5="08b27f0e61d5a0653023404159a140b7"
 
 [params]
 

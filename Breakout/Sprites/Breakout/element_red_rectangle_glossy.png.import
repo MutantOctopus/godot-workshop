@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/element_yellow_rectangle_glossy.png-a9d483441e97ac78f2efbef28c2b83eb.stex"
+path="res://.import/element_red_rectangle_glossy.png-5396e9593ebf7b8919a21c8adc765119.stex"
 
 [deps]
 
-source_file="res://Sprites/Puzzle-Pack/element_yellow_rectangle_glossy.png"
-source_md5="9391b7d1ca0f82d54ad88aba674196ae"
+source_file="res://Sprites/Breakout/element_red_rectangle_glossy.png"
+source_md5="30fdbc867bdb6f9b9b2b6b0c9d38aa33"
 
-dest_files=[ "res://.import/element_yellow_rectangle_glossy.png-a9d483441e97ac78f2efbef28c2b83eb.stex" ]
-dest_md5="a915c63c966efc9c58eaec5c5174e9e5"
+dest_files=[ "res://.import/element_red_rectangle_glossy.png-5396e9593ebf7b8919a21c8adc765119.stex" ]
+dest_md5="8dc1b901c11de7a6046b2887d13bc495"
 
 [params]
 
