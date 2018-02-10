@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ballGrey.png-d1c1c8d58e31b16de769189f16b65e97.stex"
+path="res://.import/ballBlue.png-cf80e01620a12be33135daa8648cb3e3.stex"
 
 [deps]
 
-source_file="res://Sprites/Breakout/ballGrey.png"
-source_md5="b809a6bdf2f27f8200a97440ec19294b"
+source_file="res://Elements/Ball/ballBlue.png"
+source_md5="7a5833fb732aaa388512cdb8049d7ca3"
 
-dest_files=[ "res://.import/ballGrey.png-d1c1c8d58e31b16de769189f16b65e97.stex" ]
-dest_md5="d534d157e1012f0fce6ce73ab08c88c3"
+dest_files=[ "res://.import/ballBlue.png-cf80e01620a12be33135daa8648cb3e3.stex" ]
+dest_md5="44e6c535093601bfc910b493878ff63f"
 
 [params]
 
