@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/element_yellow_rectangle_glossy.png-fb08835dc49a4ce564f146355a489bd4.stex"
+path="res://.import/element_purple_rectangle_glossy.png-24ab6d7fb4287e8437731872e93658df.stex"
 
 [deps]
 
-source_file="res://Sprites/Breakout/element_yellow_rectangle_glossy.png"
-source_md5="9391b7d1ca0f82d54ad88aba674196ae"
+source_file="res://Elements/Brick/Sprites/element_purple_rectangle_glossy.png"
+source_md5="2c34402494c83be0a83b1fcf52fbc29e"
 
-dest_files=[ "res://.import/element_yellow_rectangle_glossy.png-fb08835dc49a4ce564f146355a489bd4.stex" ]
-dest_md5="a915c63c966efc9c58eaec5c5174e9e5"
+dest_files=[ "res://.import/element_purple_rectangle_glossy.png-24ab6d7fb4287e8437731872e93658df.stex" ]
+dest_md5="7b96819acfa4343b64df85a117aaf5c7"
 
 [params]
 
