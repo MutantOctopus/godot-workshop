@@ -8,7 +8,7 @@
 custom_solver_bias = 0.0
 radius = 11.0
 
-[node name="Ball" type="KinematicBody2D" index="0" groups=[
+[node name="Ball" type="KinematicBody2D" groups=[
 "Ball",
 ]]
 
@@ -17,6 +17,7 @@ collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
+movement_speed = 100
 starting_direction = Vector2( 1, -1 )
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
