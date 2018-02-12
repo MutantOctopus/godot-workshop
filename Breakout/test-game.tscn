@@ -15,7 +15,7 @@ extents = Vector2( 10, 256 )
 custom_solver_bias = 0.0
 extents = Vector2( 256, 10 )
 
-[node name="game" type="Node2D"]
+[node name="game" type="Node2D" index="0"]
 
 __meta__ = {
 "_edit_lock_": true
@@ -68,6 +68,7 @@ movement_speed = 200
 
 [node name="Bricks" type="Node2D" parent="." index="3"]
 
+editor/display_folded = true
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -81,42 +82,34 @@ position = Vector2( 0, 256 )
 [node name="Brick" parent="Bricks/row-1" index="0" instance=ExtResource( 3 )]
 
 position = Vector2( 32, 16 )
-layer = 1
 
 [node name="Brick6" parent="Bricks/row-1" index="1" instance=ExtResource( 3 )]
 
 position = Vector2( 288, 16 )
-layer = 1
 
 [node name="Brick2" parent="Bricks/row-1" index="2" instance=ExtResource( 3 )]
 
 position = Vector2( 96, 16 )
-layer = 1
 
 [node name="Brick7" parent="Bricks/row-1" index="3" instance=ExtResource( 3 )]
 
 position = Vector2( 352, 16 )
-layer = 1
 
 [node name="Brick3" parent="Bricks/row-1" index="4" instance=ExtResource( 3 )]
 
 position = Vector2( 160, 16 )
-layer = 1
 
 [node name="Brick8" parent="Bricks/row-1" index="5" instance=ExtResource( 3 )]
 
 position = Vector2( 416, 16 )
-layer = 1
 
 [node name="Brick4" parent="Bricks/row-1" index="6" instance=ExtResource( 3 )]
 
 position = Vector2( 224, 16 )
-layer = 1
 
 [node name="Brick5" parent="Bricks/row-1" index="7" instance=ExtResource( 3 )]
 
 position = Vector2( 480, 16 )
-layer = 1
 
 [node name="row-2" type="Node2D" parent="Bricks" index="1"]
 
