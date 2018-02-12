@@ -8,7 +8,7 @@
 [ext_resource path="res://Elements/Brick/Sprites/element_red_rectangle.png" type="Texture" id=6]
 [ext_resource path="res://Elements/Brick/hitbox.tres" type="Shape2D" id=7]
 
-[node name="Brick" type="Sprite" index="0" groups=[
+[node name="Brick" type="Sprite" groups=[
 "Brick",
 ]]
 
@@ -31,6 +31,7 @@ bounce = 0.0
 
 [node name="Hitbox" type="CollisionShape2D" parent="Body" index="0"]
 
+visible = false
 shape = ExtResource( 7 )
 
 
