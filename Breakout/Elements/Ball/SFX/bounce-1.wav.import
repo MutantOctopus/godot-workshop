@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/bounce-1.wav-630f26c6eebf3bab94899c828e46486a.sample"
+
+[deps]
+
+source_file="res://Elements/Ball/SFX/bounce-1.wav"
+source_md5="117f701d7a32ecb95c2792da7baac4fe"
+
+dest_files=[ "res://.import/bounce-1.wav-630f26c6eebf3bab94899c828e46486a.sample" ]
+dest_md5="6057d3becff3a83837ff33b4ef9dfcab"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

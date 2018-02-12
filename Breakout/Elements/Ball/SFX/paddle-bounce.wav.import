@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/paddle-bounce.wav-8391137275bdd173a6fbe78a0f6bb693.sample"
+
+[deps]
+
+source_file="res://Elements/Ball/SFX/paddle-bounce.wav"
+source_md5="54f279494c189efebf9e45dc045693c1"
+
+dest_files=[ "res://.import/paddle-bounce.wav-8391137275bdd173a6fbe78a0f6bb693.sample" ]
+dest_md5="4b7d38fb698277dcf4f08fc1ec6eacfc"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

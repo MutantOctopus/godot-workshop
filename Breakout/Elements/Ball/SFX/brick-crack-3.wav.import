@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/brick-crack-3.wav-148eef21aa5d35680c58b401a6a7f9d4.sample"
+
+[deps]
+
+source_file="res://Elements/Ball/SFX/brick-crack-3.wav"
+source_md5="97681616c0537bf26c9e4d14dd4c1f47"
+
+dest_files=[ "res://.import/brick-crack-3.wav-148eef21aa5d35680c58b401a6a7f9d4.sample" ]
+dest_md5="0486ff2212b87093d308a2f7055a6b57"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
