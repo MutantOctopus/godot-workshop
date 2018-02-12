@@ -13,6 +13,11 @@ config_version=3
 config/name="Breakout"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=512
+window/size/height=512
+
 [input]
 
 move_paddle_left=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"unicode":0,"echo":false,"script":null)
