@@ -1,0 +1,59 @@
+Get assets moved into project
+
+Project settings:
+  General/Display:
+    Width:  512
+    Height: 512
+  Input map:
+    move_paddle_left:  A, Left
+    move_paddle_right: D, Right
+
+First scene: Brick.tscn
+  Create a Sprite named "Brick", and give it the blue brick texture
+  PAUSE: Take a moment to explain Godot's physics system: Everything with 'collision detection' has a 'Physics Body' with some configuration of hitboxes
+  Give Brick a StaticBody2D child named "Body" and note the warning that is raised
+  Give the StaticBody2D a CollisionShape2D child named "Hitbox" and note the warning that is raised
+  In the "Hitbox" inspector, go to the Shape field and select "New RectangleShape2D", then click on the "<RectangleShape2D>" to edit
+  Set the 'extents' to 32x16 (half of the size of the brick sprite, which can be seen if we double click on the brick sprite in the filesystem)
+  Save in res://Elements/Brick/Brick.tscn
+  
+  Create a script on "Brick"
+  Set the "Language" to VisualScript
+  Using the folder icon, set the "Path" to res://Elements/Brick/Brick.vs
+  The script editor will open. Introduce the VisualScript editor:
+    VisualScript is a type of scripting where actions are defined using visually-linked "Nodes", rather than through text. It is useful for simple scripts, and for allowing non-programming oriented individuals to understand your code; but on the other hand, in very large, intensive scripts, it can be difficult to manage. "For the purposes of this tutorial, we will be using only VisualScript to create a game of Breakout."
+    Note that the sidebar on the left is far more involved than on text scripts.
+      If you click on "Base Type", you can change what this script extends. Don't do this now.
+      The "Members" box contains three headers: Functions, Variables, and Signals. Don't worry about the buttons on them yet.
+      The "Available Nodes" box at the bottom is worth noting. In this context, "Node" does not refer to a node in the game, it refers to a node in the script. The "Available Nodes" section serves as a palette for various types of actions the VisualScript can perform; we'll see how it's used laters.
+    The center of the editor is empty, except for some text that reads "Select or create a function to edit graph". A "graph" is what we call a series of linked nodes. Create a function with the plus button; it will open automatically. Rename it to `update_state`.
+    The editor has now changed to show the "Node Graph", with only one node present: the "Function" node.
+  
+  
+  Pause to discuss "layered" bricks in Breakout - each time you hit a brick, it loses a "layer" and changes color, until you can finally break it. `pick_brick` is a function which selects the brick's color based on how many hits it has left, but first, we need to create some variables for the script.
+  
+  Create a new variable with the + icon and name it `layer`. Note that the icon beside the variable's name is a green 'any'. This means that the variable could have any type - it could be a number, or it could be text, or it could even be another Node, and we're only trusting that the variable will behave the way we want. However, in VisualScript, we can make the type of a value *explicit*, which will let us organize our logic more easily. We should always make a value's type explicit when possible.
+    `layer` is going to be an integer, so right click on it andselect "Edit variable". This will open up a new window that lets us modify the details of the variable.
+      Change type from "Variant" (any) to "int" (short for "integer", a whole number with no decimal places)
+      Set the value to 1; this will set a *default* value for when the program first starts.
+      "Hint" allows us to change the behavior of a variable in the inspector. For this, we want to set the hint to "Range", so that we can tell the inspector to only accept numbers between a low and a high value.
+      "Hint String" lets us specify what we want for certain hint types, like Range. Set the hint string to "1, 5" (as quoted); this means that `layer` can only be set to 1, 2, 3, 4, or 5 *in the inspector*. Note that we can still set the value outside this range in the program itself.
+      The final field - "Export" - lets us make the variable visible in the inspector. We want `layer` visible, so that we can change the brick's "hit points" as we need.
+
+  Next, we need to have a way to tell which sprite should be used for which 'layer'. To do this, we're going to use something called an "array". An array is a type of data structure; in particular, an array is an object which contains some number of objects in a numerically indexed list; in other words, it contains something at position one, something at position 2, et cetera. Unlike in some langugages, an array in Godot can have multiple different types of object contained in it.
+  Note that in Godot, as well as most all other programming languages, arrays are 0-indexed; this means that the first object in the array is at position '0', the second is at position '1', et cetera.
+  Create a second variable, named "layer_textures", and edit it.
+    Type: Array
+    Value: Clicking on the arrow beside `Array[]` will open an editor in the inspector. Don't close the edit window yet.
+    Hint and String Hint can be left empty.
+    Export: true
+  
+  Now, go to the Array editor. (If the array editor isn't open, go to the Brick node's inspector, then click on the arrow by Layer Textures)
+  Set "size" to 5, which will create an "indices" header. Open it. All five entries are currently "Nil", which means that there's nothing there. In order to put a Texture in a slot of the array, we need to change the Type of that slot to "Object", and then drag in the texture.
+  Set up the array as such:
+    0: Blue
+    1: Purple
+    2: Green
+    3: Yellow
+    4: Red
+  With this setup, a Red brick becomes Yellow, which becomes Green, which becomes Purple, which becomes Blue, which breaks.
