@@ -12,7 +12,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 32, 16 )
 
-[node name="Brick" type="StaticBody2D" groups=[
+[node name="Brick" type="StaticBody2D" index="0" groups=[
 "Brick",
 ]]
 
