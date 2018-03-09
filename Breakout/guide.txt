@@ -57,3 +57,14 @@ First scene: Brick.tscn
     3: Yellow
     4: Red
   With this setup, a Red brick becomes Yellow, which becomes Green, which becomes Purple, which becomes Blue, which breaks.
+
+Now that the variables for a brick have been set up, we can begin work on the logic. Return to the `update_state` function.
+  Drag `layer` from the sidebar and drop it into the graph, bove the Function node. The `layer` node has one output, which is the value of the variable.
+  Since `layer` acts as the "health points" for the brick, `layer = 0` means the brick is broken, `layer = 1` means the first brick, etc. But in our list, the first brick is at index 0. We need to subtract one from the layer so that it will properly index the sprite.
+    Go to the Available Nodes and search for "Subtract". Drag it into the graph. "Subtract" has two inputs, on the left, and one output. As the node states, it will subtract the second input (B) from the first (A). Click on the output of `layer` and drag it into `A`.
+    Since we know that we want to put in two `int`s as input and get an `int` as output, we can change the Type of the Subtract node. Do so, and notice that `B` now has a field to select a number. We can set B to a value directly, rather than dragging an input in. Set B to 1.
+  Next, we need to get the actual sprite associated with this layer. Drag `layer_textures` into the graph, above `Subtract`.
+    When getting a value from an array, we do something called 'indexing'. Search `index` in the Available Nodes, and drag out `Get Index`. The `Get Index` node has two inputs: `base`, which is the array we're indexing, and `index`, the index to use. Connect `layer_textures` to `base`, and the Subtract node to `index`.
+  Drag the Function node above IndexGet. Our next step is to set the texture of the sprite to the texture we indexed from our array. Search "self" in the available nodes, and drag it in. "Self" refers to the node this script is on.
+    From "Self", drag the `obj` output somewhere onto the graph, and drop. Select "Set" from the menu that appears, and pick `texture`. For the input field that reads `value`, connect the result of `IndexGet`.
+    In order to perform the set, we need to connect the control flow; otherwise, the program won't know *when* to set the value. Connect the white arrow on `Function` to the input arrow on `InstanceSet`. The method is now complete.
